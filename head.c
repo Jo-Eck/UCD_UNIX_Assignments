@@ -1,4 +1,16 @@
+// This program is a simplified version of the head command in linux
+// It can be used to print the first 10 lines of a file, or a specified number of lines
+// It can also be used to print only the even or odd lines of a file
+// It prints details about the author if the -V flag is used
+// It prints the help text if the -h flag is used
+// Created by Jon Eckerth 2023
+// Student Number: 22209542
+// Email: jon.eckerth@ucdconnect.ie
+// 
+// This program works completely on Fedora 36, but I have not tested it on any other OS
+
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
 #include <stdbool.h>
@@ -9,7 +21,7 @@ int main(int argc, char *argv[]){
     int opt;
     char even_or_odd = 'n';
     int num_lines = 10; 
-    char * path;
+    char * path = NULL;
     int i = 0;
     FILE *fp;
     char *line = NULL;
@@ -36,7 +48,7 @@ int main(int argc, char *argv[]){
                 printf(
                     "Name: Jon Eckerth \n"
                     "Email: jon.eckerth@ucdconnect.ie \n"
-                    "Student Number: XXXXXXXXXXXXXXXX \n"
+                    "Student Number: 22209542 \n"
                 );
                 break;
             
@@ -76,7 +88,7 @@ int main(int argc, char *argv[]){
                     );
                     return -1;
                 }
-                num_lines = atoi(optarg);d
+                num_lines = atoi(optarg);
                 break;
         }
     }
@@ -105,16 +117,22 @@ int main(int argc, char *argv[]){
     }
 
     //  Reads the file line by line and prints it to stdout
-    while ((read = getline(&line, &len, fp) != -1) &&  i < num_lines){
+    while ((read = getline(&line, &len, fp) != -1) &&  num_lines > 0){
         i++;
         if (
             (even_or_odd == 'n') ||                 // If no flag is set, it will print all lines 
             (even_or_odd == 'o' && i%2 != 0) ||     // If the odd flag is set, it will print all odd lines
             (even_or_odd == 'e' && i%2 == 0)       // If the even flag is set, it will print all even lines
             ){
-                printf ("%d: ", i) ;
                 printf(line);
+                num_lines--;
             }
+    }
+    
+    // If the file does not contain enough lines, it will throw an error
+    if (num_lines > 0){
+        fprintf(stderr, "ERROR: File does not contain enough lines! \n");
+        return -1;
     }
 }
 
