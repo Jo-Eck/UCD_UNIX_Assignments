@@ -8,11 +8,11 @@ The Unix utilities head and tail output the first and last parts of files respec
 Your assignment is to implement your own version of these utilities in C.
 You will submit your code to file submission.
 
-- [ ] Implement either head or tail, even or odd line listing (your choice).
+- [X] Implement either head or tail, even or odd line listing (your choice).
 - [X] You should work independently, you may consult with each other but submit code that is entirely yours. You are free to use any code from lectures and labs. Feel free to read the source code of GNU head and tail but please don’t submit code based directly on this.
-- [ ] Submit a single .c file. Name the file exactly assign1-XXX.c where XXX is your student number.
-- [ ] In the comment block at the top, explain concisely what the program does and include your name, student number and email address.
-- [ ] Note in the comment block how well you completed the task (eg. Works completely, or x and y work, but z does not).
+- [X] Submit a single .c file. Name the file exactly assign1-XXX.c where XXX is your student number.
+- [X] In the comment block at the top, explain concisely what the program does and include your name, student number and email address.
+- [X] Note in the comment block how well you completed the task (eg. Works completely, or x and y work, but z does not).
 
 NOTE: It is very important to add meaningful comments to your code explaining what every block of the code performs.
 Use getopt to accept the following optional parameters:
