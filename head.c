@@ -24,24 +24,23 @@ int main(int argc, char *argv[]){
     char * path = NULL;
     int i = 0;
     FILE *fp;
-    char *line = NULL;
-    size_t len = 0;
-    ssize_t read;
 
-    while((opt = getopt(argc, argv,":Vheon:")) != -1){
+    while((opt = getopt(argc, argv,":Vheon:?")) != -1){
 
         switch(opt){
 
             case 'h':
             // Prints the help text
                 printf(
+                    "Usage: head [OPTION]... [FILE]... \n"
                     "-n K output the first K lines. \n"
                     "-V Output version info: Your name, email, and student number. \n"
                     "-h display this. \n"
                     "-e print even lines. \n"
                     "-o print odd lines. \n"
+                    "Takes input from stdin if no file is provided. \n"
                 );
-                return 1;
+                return 0;
 
             case 'V':
             // Prints details about the author
@@ -90,6 +89,11 @@ int main(int argc, char *argv[]){
                 }
                 num_lines = atoi(optarg);
                 break;
+
+            case '?':
+            // If an unrecognized flag is used, it will throw an error
+                fprintf(stderr, "Unrecognized argument: %s \n", argv[optind-1]);
+                return -1;
         }
     }
     
@@ -116,6 +120,10 @@ int main(int argc, char *argv[]){
         return -1;
     }
 
+    char *line = NULL;
+    size_t len = 0;
+    ssize_t read;
+
     //  Reads the file line by line and prints it to stdout
     while ((read = getline(&line, &len, fp) != -1) &&  num_lines > 0){
         i++;
@@ -132,8 +140,11 @@ int main(int argc, char *argv[]){
     // If the file does not contain enough lines, it will throw an error
     if (num_lines > 0){
         fprintf(stderr, "ERROR: File does not contain enough lines! \n");
+        fclose(fp);
         return -1;
     }
+
+    // If everything went well, it will return 0 and close the file
+    fclose(fp);
+    return 0;
 }
-
-
