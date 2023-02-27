@@ -1,0 +1,12 @@
+ls
+sleep 1
+pwd
+mkdir test_dir
+cd test_dir
+pwd
+cd ../
+rmdir test_dir
+echo "hello world"
+echo "Test text" > file1
+whoami
+cat file1
