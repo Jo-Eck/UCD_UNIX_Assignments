@@ -5,8 +5,8 @@ It is a collection of C programs that are designed to teach the student about th
 
 The assignments are as follows:
 
-1. [Assignment 1 (Writing a clone of the "head Utility")](./assignment_1/README.md)
-2. [Assignment 2 (Writing a clone of the bash shell)](./assignment_2/README.md)
-3. ...
+1. [Assignment 1 (Writing a clone of the "head Utility")](./Assignment_no1/README.md)
+2. [Assignment 2 (Writing a clone of the bash shell)](./Assignment_no2/Assignment_2.pdf)
+3. [Assignment 3 (Writing Socket based quizz)](./Assignment_no3/assignment3.pdf)
 
 The Notes for the module these assignments are based on can be found [here](https://github.com/Jo-Eck/Semester_4_UCD/blob/main/UNIX_Programming/UNIX_Programming.md)
