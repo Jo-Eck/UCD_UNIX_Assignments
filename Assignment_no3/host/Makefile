@@ -1,6 +1,6 @@
 CC = gcc
 CFLAGS=-g -Wall
-TARGET = quiz
+TARGET = quiz_server
 
 all: $(TARGET)
 
