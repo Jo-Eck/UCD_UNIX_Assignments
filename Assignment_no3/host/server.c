@@ -4,9 +4,7 @@
 #include "host.h"
 
 
-int server(char* ip_addr,int port, int *fd){
-
-    printf("Starting server ...\n");
+int start_server(char* ip_addr,int port, int *fd){
 
     // creating the socket
     *fd = socket(AF_INET, SOCK_STREAM, 0);
@@ -29,20 +27,21 @@ int server(char* ip_addr,int port, int *fd){
         perror("Error in listen");
         return 1;
     }
-    printf("Server started successfully! \n \n");
+    printf("<Listening on %s:%d> \n", ip_addr, port);
+    printf("<Press ctrl-C to terminate> \n");
     return 0;
 }
 
 int get_connection(int socket, int *connection_fd) {
     struct sockaddr_storage claddr;
-    char host[1025], service[32];
+    char host[1024], service[32];
 
     // Continuously wait for a connection
     while (1) {
-        printf("Waiting for connection on port %d ...\n", 1024);
-        socklen_t addrlen = sizeof(struct sockaddr_storage);
+        socklen_t addrlen = sizeof(claddr);
+    
         *connection_fd = accept(socket, (struct sockaddr *) &claddr, &addrlen);
-
+        
         if (*connection_fd == -1) {
             perror("Error in accept");
             continue;
@@ -54,10 +53,17 @@ int get_connection(int socket, int *connection_fd) {
             printf("Connection established with: %s:%s\n", host, service);
         } else {
             fprintf(stderr, "Error in getnameinfo\n");
+            return 1;
         }
         
         break;
     }
-
     return 0;
+}
+
+int send_message(int connection, char* message){
+    send(connection, message, strlen(message), 0);
+
+    // Message terminator
+    send(connection, "\r\n\r\n", 4, 0);
 }

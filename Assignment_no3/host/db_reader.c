@@ -3,7 +3,7 @@
 // Email: jon.eckerth@ucdconnect.ie
 
 #include "host.h"
-#include "../QuizDB.h"
+#include "QuizDB.h"
  
 
 int get_questions(q_a_pair questions_answers[QUESTIONS_PER_ROUND]){

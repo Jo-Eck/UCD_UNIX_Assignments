@@ -2,67 +2,74 @@
 // Student ID: 22209542
 // Email: jon.eckerth@ucdconnect.ie
 
-// [ ] use internet domain stream sockets
-// [ ] will ask the client 5 questions 
-//      [ ] one after another
-// [ ] at the end a score will be calculated
-// [ ] only the server has access to the questions
-// [ ] the server randomly selects 5 questions
-// [ ] the server takes two arguments (assuming cli parameters)
-//      [ ] IP4 address
-//      [ ] Port number
-// [ ] Server will bind to this port
-// [ ] Server will then print :
-//      "<Listening on IP:PORT>
-//      <Press ctrl-C to terminate>""
-// [ ] wait for clients to connect if so will send:
-//      "Welcome to Unix Programming Quiz!
-//      The quiz comprises five questions posed to you one after the other.
-//      You have only one attempt to answer a question.
-//      Your final score will be sent to you after conclusion of the quiz.
-//      To start the quiz, press Y and <enter>.
-//      To quit the quiz, press q and <enter>."
-// [ ] if  "q" terminate connection and goe back into waiting for connections
-// [ ] if "Y" start quiz
-// [ ] sends question, if question correct, send:
-//      "Right Answer." 
-// [ ] if incorrect send:
-//      "Wrong Answer. Right answer is <xxx>."
-// [ ] After the conclusion of the quiz, the server will send the following to theclient:
-//      "Your quiz score is x/5. Goodbye!""
-
 
 #include "host.h"
+#include <unistd.h>
+#include <string.h>
+#include <stdbool.h>
+
 q_a_pair questions_answers[QUESTIONS_PER_ROUND];
+int port = 8080;
+int sock;
+int connection;
+char* ip = "127.0.0.1";
 
-int main() {
+void sigint_handler(int sig_num) {
+    printf("\nExiting...\n");
 
-    int socket;
-    int connection = -1; 
-
-
-    if (server("127.0.0.1",1024, &socket)){
-        fprintf(stderr, "Server wasnt able to start!\n");
-        return(1);
-    }
-
+    send(connection, "", 0, 0);
+    close(connection);    
+    close(sock);
     
-    get_connection(socket, &connection);
-
-
-    if (get_questions(questions_answers)){
-        fprintf(stderr, "Couldnt get questions\n");
-        return(1);
+    exit(0);
     }
 
-    for (int i = 0; i < QUESTIONS_PER_ROUND; i++){
-        printf("%s\n", questions_answers[i].question);
+int main(int argc, char** argv) {
+    int opt;
+    while((opt = getopt(argc, argv, "hp:i:")) != -1) {
+        switch(opt) {
+            case 'h':
+                fprintf(stderr, "Usage: %s [-p port] [-i ip]\n", argv[0]);
+                return 1;
+            case 'p':
+                port = atoi(optarg);
+                break;
+            case 'i':
+                ip = optarg;
+                break;
+            default:
+                fprintf(stderr, "Usage: %s [-p port] [-i ip]\n", argv[0]);
+                return 1;
+        }
+    }
+
+    sock = -1;
+    signal(SIGPIPE, SIG_IGN);
+
+    if (start_server(ip, port, &sock)) {
+        fprintf(stderr, "Server wasn't able to start!\n");
+        return 1;
+    }
+
+    while (1) {
+        connection = -1;
         
-        printf("The correct answer is: %s\n \n", questions_answers[i].answer);
+        if (get_connection(sock, &connection)) {
+            fprintf(stderr, "Critical error during connection");
+        }
 
+        if (get_questions(questions_answers)) {
+            fprintf(stderr, "Couldn't get questions\n");
+            return 1;
+        }
+
+        if (quiz(connection, questions_answers)) {
+            fprintf(stderr, "Error during quiz\n");
+            return 1;
+        }
+        
     }
-    
-    
 
+    close(sock);
     return 0;
 }

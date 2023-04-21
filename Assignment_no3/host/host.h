@@ -8,9 +8,12 @@
 #include <netdb.h>
 #include <arpa/inet.h>
 #include <string.h>
+#include <signal.h>
+
 
 #define QUESTIONS_PER_ROUND 5
 #define AMOUNT_OF_QUESTIONS 42
+#define MAX_ANSWER_LENGTH 1000
 
 typedef struct  q_a_pair{
     int location;
@@ -20,9 +23,9 @@ typedef struct  q_a_pair{
 
 
 
-int server();
+int start_server();
 int get_questions();
 int get_connection();
-
-
-    
+int quiz();
+char* to_lower();
+int send_message();
