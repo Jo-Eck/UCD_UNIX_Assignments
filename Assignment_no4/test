@@ -1,0 +1,85 @@
+
+ Stage: 1
+
+  Module     Title                                                Cred Grade G.P
++===============================================================================+
+| COMP10030  Algorithmic Problem Solving                           5     C    3 |
+| COMP10040  Introduction to Computer Architecture                 5     A    5 |
+| COMP10070  Formal Foundations                                    5     B    4 |
+| COMP10110  Computer Programming I                                5     C    3 |
+| COMP10300  Functional Programming                                5     A    5 |
+| COMP10050  Software Engineering Project 1                        5     C    3 |
+| COMP10120  Computer Programming II                               5     B    4 |
+| MATH10210  Foundations of Mathematics for Computer Science I     5     C    3 |
+| MATH10220  Foundations of Mathematics for Computer Science II    5     D    2 |
+| STAT10430  Statistics with Python                                5     B    4 |
++-------------------------------------------------------------------------------+
+| COMP10130  Computer Science in Practice                          5     B    4 |
++===============================================================================+
+| Stage 1 total grade points:                                                40 |
+| Stage 1 total credits:                                                  55/55 |
++===============================================================================+
+
+ Stage: 2
+
+  Module     Title                                                Cred Grade G.P
++===============================================================================+
+| COMP20020  Digital Systems                                       5     A    5 |
+| COMP20070  Databases and Information Systems I                   5     D    2 |
+| COMP20110  Discrete Mathematics for Computer Science             5     B    4 |
+| COMP20250  Introduction to Java                                  5     C    3 |
+| COMP20320  Computer Networking                                   5     B    4 |
+| COMP20050  Software Engineering Project 2                        5     A    5 |
+| COMP20180  Intro to Operating Systems                            5     A    5 |
+| COMP20280  Data Structures                                       5     C    3 |
+| COMP20290  Algorithms                                            5     A    5 |
+| MST20050   Linear Algebra II                                     5     B    4 |
++-------------------------------------------------------------------------------+
++===============================================================================+
+| Stage 2 total grade points:                                                40 |
+| Stage 2 total credits:                                                  50/50 |
++===============================================================================+
+
+ Stage: 3
+
+  Module     Title                                                Cred Grade G.P
++===============================================================================+
+| COMP30010  Foundations of Computing                              5     A    5 |
+| COMP30040  Networks and Internet Systems                         5     A    5 |
+| COMP30070  Object-Oriented Programming                           5     C    3 |
+| COMP30080  Computer Systems                                      5     C    3 |
+| COMP30770  Programming for Big Data                              5     D    2 |
+| COMP30860  Web Development                                       5     A    5 |
+| COMP30870  Graph Algorithms                                      5     B    4 |
++-------------------------------------------------------------------------------+
+| COMP30790  Industry internship                                  15     D    2 |
++===============================================================================+
+| Stage 3 total grade points:                                                29 |
+| Stage 3 total credits:                                                  50/50 |
++===============================================================================+
+
+ Stage: 4
+
+  Module     Title                                                Cred Grade G.P
++===============================================================================+
+| COMP30900  Final Year Project Foundations                        5     D    2 |
+| COMP30910  FYP: Design and Implementation                       10     B    4 |
++-------------------------------------------------------------------------------+
+| COMP40660  Advances in Wireless Networking                       5     C    3 |
+| COMP30220  Distributed Systems                                   5     D    2 |
+| COMP30110  Spatial Information Systems                           5     D    2 |
+| COMP30250  Parallel and Cluster Computing                        5     A    5 |
+| COMP30690  Information Theory                                    5     D    2 |
+| COMP30930  Optimisation                                          5     D    2 |
+| COMP30540  Game Development                                      5     B    4 |
+| COMP40010  Performance of Computer Systems                       5     A    5 |
+| MATH30180  An Intro to Coding Theory                             5     C    3 |
++===============================================================================+
+| Stage 4 total grade points:                                                34 |
+| Stage 4 total credits:                                                  60/60 |
++===============================================================================+
+
+#################################################################################
+# Overall total grade points:                                               143 #
+# Overall total credits:                                                    215 #
+#################################################################################
